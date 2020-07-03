@@ -1,0 +1,12 @@
+docker rm -f $(docker ps -a -q)
+
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=rootroot -p 3306:3306 -d mysql
+
+docker run -it --link mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+
+docker run -d --name sonarqube -p 9000:9000 sonarqube
+
+mvn sonar:sonar \
+  -Dsonar.projectKey=project_dashboard \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=99c89fbb1fef050d9e1aa2841a0f437e697d8a9d

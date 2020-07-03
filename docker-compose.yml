@@ -1,0 +1,34 @@
+version: '3'
+services:
+  eurekaserver:
+    container_name: eurekaserver
+    build: eurekaServer
+    ports:
+      - "8761:8761"
+
+  main-webservice:
+    container_name: main-webservice
+    build: main-webservice
+    ports:
+      - "8081:8081"
+    depends_on:
+      - main-webservice_db
+      - eurekaserver
+    restart: always
+
+
+  main-webservice_db:
+    container_name: main-webservice_db
+    image: mysql:5.7
+    volumes:
+      - main-webservice_db_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=mysql_main-webservice
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306"
+    restart: always
+
+volumes:
+  main-webservice_db_data: {}
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	<entry key="Produit.findByCriteres.select">
+	    <![CDATA[
+	    	SELECT id, libelle, reference
+		]]>
+	</entry>
+
+	<entry key="Produit.findByCriteres.select.count">
+	    <![CDATA[
+	    	SELECT COUNT(id)
+		]]>
+	</entry>
+
+	<entry key="Produit.findByCriteres.from">
+		<![CDATA[
+	    	FROM produit p
+		]]>
+	</entry>
+
+	<entry key="Produit.findByCriteres.critere.filtre">
+	    <![CDATA[
+	    	 AND (
+	    	 	p.libelle LIKE :filtre OR
+	    	 	p.reference LIKE :filtre
+	    	 )
+		]]>
+	</entry>
+
+	<entry key="Produit.findByCriteres.critere.nombreResultatMax">
+	    <![CDATA[
+	    	 LIMIT :nombreResultatsMax;
+		]]>
+	</entry>
+
+</properties>

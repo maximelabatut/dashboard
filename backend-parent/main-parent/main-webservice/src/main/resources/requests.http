@@ -1,0 +1,4 @@
+POST http://localhost:8080/produit/
+Content-Type: application/json
+
+{"id":"1","libelle":"airmax","reference":"12-45D27"}
